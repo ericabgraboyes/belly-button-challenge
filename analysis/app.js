@@ -1,81 +1,101 @@
 // save URL for sample data 
 const dataURL = "https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-classroom/v1.1/14-Interactive-Web-Visualizations/02-Homework/samples.json";
 
+
+let testSubject = ''
 let rawData = null
 let dropDownNames = null
 let metaData = null
 let selectedData = null
-let testSubject = ''
+let filteredSamples = null
+let filterMetaData = null
+
+let otuIDs = null
+let otuLabels = null
+let otuValues = null
+let sortChartData = null
+let xAxis = null
+let yAxis = null
+let text = null
+
 
 // define selector 
 let selectDropDown = document.querySelector('#selDataset')
 var selector = d3.select("#selDataset") 
 
 function populateMetadata() {
-        //create variable for filtered metaData
-        var filterMetaData = metaData.filter(person => person.id.toString() === testSubject)[0];
+    // assign filterMetdata to testSubjectID
+    filterMetaData = metaData.filter(person => person.id.toString() === testSubject)[0];
+    
+    // select info id and assign to variable
+    var selectedMetaData = d3.select('#sample-metadata');
+            
+    // clear existing metadata before display selection
+    selectedMetaData.html('');
 
-        //select info id and assign to variable
-        var selectedMetaData = d3.select('#sample-metadata');
-
-        // clear existing metadata before display selection
-        selectedMetaData.html('');
-
-        // push metadata to visualization
-        Object.entries(filterMetaData)
-        .forEach(([key, value]) =>
-            selectedMetaData
-            .append('p')
-            .text(`${key}: ${value}`),
+    // push metadata to visualization
+    Object.entries(filterMetaData)
+    .forEach(([key, value]) =>
+        selectedMetaData
+        .append('p')
+        .text(`${key}: ${value}`),
         );
 ;}
 
+// function populateBubbleChart() {
+
+// }
+
+
+
+
 function populateBarChart() {
-        //create variable for filtered samples
-        var filteredSamples = selectedData.filter(person => person.id === testSubject)[0];
-        // console.log("SampleValues:",filteredSamples);
+    // assign filteredSamples to testSubjectID
+    filteredSamples = selectedData.filter(person => person.id === testSubject)[0];
+    // console.log("SampleValues:",filteredSamples);
 
-        //create variables to store otuID, otuLabels and values
-        var otuIDs = filteredSamples.otu_ids;
-        // console.log("otuID:", otuIDs);
+    // assign otu global variables to filteredSamples.properties
+    otuIDs = filteredSamples.otu_ids;
+    // console.log("otuID:", otuIDs);
 
-        var otuLabels = filteredSamples.otu_labels;
-        console.log("otuLabels:", otuLabels);
+    otuLabels = filteredSamples.otu_labels;
+    // console.log("otuLabels:", otuLabels);
 
-        var otuValues = filteredSamples.sample_values;
-        console.log("outValues:", otuValues);
+    otuValues = filteredSamples.sample_values;
+    // console.log("outValues:", otuValues);
 
-        var dataToChart = [];
-        for (var d=0; d<otuIDs.length; d++) {
-            dataToChart.push({
-                id:otuIDs[d],
-                label:otuLabels[d],
-                value:otuValues[d]})};
-        
-        console.log("testchart:", dataToChart);
+    let dataToChart = [];
+    for (var d=0; d<otuIDs.length; d++) {
+        dataToChart.push({
+            id:otuIDs[d],
+            label:otuLabels[d],
+            value:otuValues[d]})};
+    // console.log("testchart:", dataToChart);
 
-        var sortChartData = dataToChart.sort((d1, d2) => {
-            return d2.value - d1.value;
+    // call sort method on chart data, assign to global variable
+    sortChartData = dataToChart.sort((d1, d2) => {
+        return d2.value - d1.value;
         });
+    // console.log("sortedData:", sortChartData);
 
-        console.log("sortedData:", sortChartData);
+    //From sortChartData map values for x, y axis and hover text
+    xAxis = sortChartData.map(sCD => sCD.value);
+    yAxis = sortChartData.map(sCD => 'OTU '+ sCD.id);
+    //console.log("y_axis", y_Axis);
+    text = sortChartData.map(sCD => sCD.label);
 
-        //From sortChartData map values for x, y axis and hover text
-        var x_Axis = sortChartData.map(sCD => sCD.value);
-        var y_Axis = sortChartData.map(sCD => 'OTU '+ sCD.id);
-        console.log("y_axis", y_Axis);
-        var h_Text = sortChartData.map(sCD => sCD.label);
+    // create variable for title
 
-        //create barGraph 
-        var barGraph = [{
-            x: x_Axis.slice(0,10).reverse(),
-            y: y_Axis.slice(0,10).reverse(),
-            text: h_Text.slice(0,10).reverse(),
-            type: "bar",
-            orientation: 'h'}]
+    // create barGraph 
+    var barGraph = [{
+        x: xAxis.slice(0,10).reverse(),
+        y: yAxis.slice(0,10).reverse(),
+        text: text.slice(0,10).reverse(),
+        type: "bar",
+        orientation: 'h'}]
 
-        // create chart
-        Plotly.newPlot('bar', barGraph)};
+    // generate plot, assign graph to html tag with id = bar
+    Plotly.newPlot('bar', barGraph)};
 
 function init() {
     // Fetch the JSON data and console log it
@@ -100,16 +120,8 @@ function init() {
         testSubject = selectDropDown.value
         populateMetadata();
         populateBarChart();
-        console.log("test:", testSubject)
+        //console.log("test:", testSubject)
     });
 };
 
-
-
-    // // add event handler for drop down changing, add listener
-    // selector.addEventListener('change', (e) => {
-    //     // var filterMetaData = metaData.filter(person => person.id.toString() === '940')[0];
-    //     getMetadata(e.target.value)
-        
-        // console.log('Metadata:', filterMetaData) 
 init();
