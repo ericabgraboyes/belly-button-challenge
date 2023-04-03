@@ -5,45 +5,15 @@ let rawData = null
 let dropDownNames = null
 let metaData = null
 let selectedData = null
+let testSubject = ''
 
-// function getMetadata(id) {
-//     //create variable for filtered metaData
-//     var filterMetaData = metaData.filter(person => person.id.toString() === id)[0];
+// define selector 
+let selectDropDown = document.querySelector('#selDataset')
+var selector = d3.select("#selDataset") 
 
-//     //select info id and assign to variable
-//     var selectedMetadata = d3.select('#sample-metadata');
-
-//     // clear existing metadata before display selection
-//     selectedMetadata.html('');
-    
-//     // push metadata to visualization
-//     Object.entries(filterMetaData)
-//     .forEach(([key, value]) => 
-//         selectedMetadata
-//             .append('p')
-//             .text(`${key}: ${value}`),
-//     );
-// };
-
-function init() {
-    // define selector 
-    var selector = d3.select("#selDataset")
-
-    // Fetch the JSON data and console log it
-    d3.json(dataURL).then(function(data) {
-        rawData = data
-        dropDownNames = data.names;
-        metaData = data.metadata;
-        selectedData = data.samples;
-        dropDownNames.forEach((sample) => {
-            selector 
-                .append("option")
-                .text(sample)
-                .property("value", sample);
-        });
-
+function populateMetadata() {
         //create variable for filtered metaData
-        var filterMetaData = metaData.filter(person => person.id.toString() === '940')[0];
+        var filterMetaData = metaData.filter(person => person.id.toString() === testSubject)[0];
 
         //select info id and assign to variable
         var selectedMetaData = d3.select('#sample-metadata');
@@ -58,15 +28,16 @@ function init() {
             .append('p')
             .text(`${key}: ${value}`),
         );
+;}
 
+function populateBarChart() {
         //create variable for filtered samples
-        var filteredSamples = selectedData.filter(person => person.id === '940')[0];
-        console.log("SampleValues:",filteredSamples);
+        var filteredSamples = selectedData.filter(person => person.id === testSubject)[0];
+        // console.log("SampleValues:",filteredSamples);
 
         //create variables to store otuID, otuLabels and values
         var otuIDs = filteredSamples.otu_ids;
-        console.log("otuID:", otuIDs);
-        console.log(Array.isArray(otuIDs));
+        // console.log("otuID:", otuIDs);
 
         var otuLabels = filteredSamples.otu_labels;
         console.log("otuLabels:", otuLabels);
@@ -104,20 +75,34 @@ function init() {
             orientation: 'h'}]
 
         // create chart
-        Plotly.newPlot('bar', barGraph)
+        Plotly.newPlot('bar', barGraph)};
 
-
-
-
-
-
-
-
-
-
-
-           
+function init() {
+    // Fetch the JSON data and console log it
+    d3.json(dataURL).then(function(data) {
+        rawData = data
+        dropDownNames = data.names;
+        metaData = data.metadata;
+        console.log("testmetadata",metaData[0])
+        testSubject = data.metadata[0].id.toString()
+        selectedData = data.samples;
+        dropDownNames.forEach((sample) => {
+            selector 
+                .append("option")
+                .text(sample)
+                .property("value", sample);
+        });
+        populateMetadata();
+        populateBarChart();    
     });
+    
+    selectDropDown.addEventListener('change', function() {
+        testSubject = selectDropDown.value
+        populateMetadata();
+        populateBarChart();
+        console.log("test:", testSubject)
+    });
+};
 
 
 
@@ -126,7 +111,5 @@ function init() {
     //     // var filterMetaData = metaData.filter(person => person.id.toString() === '940')[0];
     //     getMetadata(e.target.value)
         
-        // console.log('Metadata:', filterMetaData)
-    };
-  
+        // console.log('Metadata:', filterMetaData) 
 init();
