@@ -95,17 +95,16 @@ function init() {
         console.log("y_axis", y_Axis);
         var h_Text = sortChartData.map(sCD => sCD.label);
 
-        // //create barGraph 
-        // var barGraph = [{
-        //     x: X_axis
-        // }]
+        //create barGraph 
+        var barGraph = [{
+            x: x_Axis.slice(0,10).reverse(),
+            y: y_Axis.slice(0,10).reverse(),
+            text: h_Text.slice(0,10).reverse(),
+            type: "bar",
+            orientation: 'h'}]
 
-        // // create bar chart trace displaying top 10 values
-        // var barChart = {
-        //     x:
-        // }
-
-        // 
+        // create chart
+        Plotly.newPlot('bar', barGraph)
 
 
 
