@@ -19,9 +19,8 @@ let yAxis = null
 let text = null
 
 
-// define selector 
-let selectDropDown = document.querySelector('#selDataset')
-var selector = d3.select("#selDataset") 
+// define selector - use to handle event change using pure js; d3 script does not understand addEventListener
+// let selectDropDown = document.querySelector('#selDataset')
 
 function populateMetadata() {
     // assign filterMetdata to testSubjectID
@@ -42,17 +41,10 @@ function populateMetadata() {
         );
 ;}
 
-// function populateBubbleChart() {
-
-// }
-
-
-
-
-function populateBarChart() {
+function populateCharts() {
     // assign filteredSamples to testSubjectID
     filteredSamples = selectedData.filter(person => person.id === testSubject)[0];
-    // console.log("SampleValues:",filteredSamples);
+    console.log("SampleValues:",filteredSamples);
 
     // assign otu global variables to filteredSamples.properties
     otuIDs = filteredSamples.otu_ids;
@@ -78,26 +70,44 @@ function populateBarChart() {
         });
     // console.log("sortedData:", sortChartData);
 
-    //From sortChartData map values for x, y axis and hover text
-    xAxis = sortChartData.map(sCD => sCD.value);
-    yAxis = sortChartData.map(sCD => 'OTU '+ sCD.id);
-    //console.log("y_axis", y_Axis);
-    text = sortChartData.map(sCD => sCD.label);
+    // create Bubble Chart
+    var bubbleGraph = [{
+        x: dataToChart.map(dTC => dTC.id),
+        y: dataToChart.map(dTC => dTC.value),
+        text: dataToChart.map(dTC => dTC.label),
+        mode: 'markers',
+        marker: {
+            size: dataToChart.map(dTC => dTC.value),
+            color: dataToChart.map(dTC => dTC.id),
+            // colorscale: 'Earth',
+            opacity: 0.8
+            },
+        }];
 
-    // create variable for title
+    var bubbleLayout = {
+        title: "bubble chart placeholder title",
+        height: 520,
+        width: 920,
+        xaxis: {automargin: true},
+        yaxis: {automargin: true}}
 
     // create barGraph 
     var barGraph = [{
-        x: xAxis.slice(0,10).reverse(),
-        y: yAxis.slice(0,10).reverse(),
-        text: text.slice(0,10).reverse(),
+        x: (sortChartData.map(sCD => sCD.value)).slice(0,10).reverse(),
+        y: (sortChartData.map(sCD => 'OTU '+ sCD.id)).slice(0,10).reverse(),
+        text: (sortChartData.map(sCD => sCD.label)).slice(0,10).reverse(),
         type: "bar",
         orientation: 'h'}]
 
     // generate plot, assign graph to html tag with id = bar
-    Plotly.newPlot('bar', barGraph)};
+    Plotly.newPlot('bar', barGraph);
+    Plotly.newPlot('bubble', bubbleGraph, bubbleLayout)
+};
 
 function init() {
+    // d3 selector used to populate menu dropdown
+    var selector = d3.select("#selDataset") 
+    
     // Fetch the JSON data and console log it
     d3.json(dataURL).then(function(data) {
         rawData = data
@@ -113,14 +123,20 @@ function init() {
                 .property("value", sample);
         });
         populateMetadata();
-        populateBarChart();    
+        populateCharts();    
     });
     
-    selectDropDown.addEventListener('change', function() {
-        testSubject = selectDropDown.value
-        populateMetadata();
-        populateBarChart();
-        //console.log("test:", testSubject)
+        selector.on('change', function() {
+            testSubject = selector.property("value")
+            populateMetadata();
+            populateCharts();
+
+    // // if using pure javascript -- need to use .addEventListener. Attach as method to selectDropDown object defined at start of script.
+    //     selectDropDown.addEventListener('change', function() {
+    //     testSubject = selectDropDown.value
+    //     populateMetadata();
+    //     populateCharts();
+    //     //console.log("test:", testSubject)
     });
 };
 
