@@ -66,16 +66,17 @@ function populateGauge(filterMetaData) {
             bgcolor: 'white',
             bordercolor: 'grey',
             steps: [
-                { range: [0, 1], color: '#F8F3EC'},
-                { range: [1, 2], color: '#F4F1E4'},
-                { range: [2, 3], color: '#E9E7C9'},
-                { range: [3, 4], color: '#E5E8B0'},
-                { range: [4, 5], color: '#D5E599'},
-                { range: [5, 6], color: '#B7CD8F'},
-                { range: [6, 7], color: '#8BC086'},
-                { range: [7, 8], color: '#89BC8D'},
-                { range: [8, 9], color: '#84B589'}],
+                { range: [0, 1], color: '#ECEFF1'},
+                { range: [1, 2], color: '#CFD8DC'},
+                { range: [2, 3], color: '#B0BEC5'},
+                { range: [3, 4], color: '#90A4AE'},
+                { range: [4, 5], color: '#78909C'},
+                { range: [5, 6], color: '#607D8B'},
+                { range: [6, 7], color: '#546E7A'},
+                { range: [7, 8], color: '#455A64'},
+                { range: [8, 9], color: '#37474F'}],
             },
+
         }]
     // render gauge dial to html tag with id 'gauge'
     Plotly.newPlot('gauge', gaugeChart)};
@@ -163,6 +164,8 @@ function populateCharts() {
         x: (sortChartData.map(sCD => sCD.value)).slice(0,10).reverse(),
         y: (sortChartData.map(sCD => 'OTU '+ sCD.id)).slice(0,10).reverse(),
         text: (sortChartData.map(sCD => sCD.label)).slice(0,10).reverse(),
+        hoverlabel: {font: {size:12}},
+        marker: {color:  ['#ECEFF1', '#CFD8DC', '#B0BEC5', '#90A4AE', '#78909C', '#607D8B','#546E7A','#455A64','#37474F', '#263238'],},
         type: "bar",
         orientation: 'h'}];    
 
