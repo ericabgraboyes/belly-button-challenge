@@ -9,6 +9,60 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 
+
+<style>
+  /* Menu and Demographics */
+  .stylemenu {
+    box-shadow: 0 8px 14px -6px rgb(74, 74, 74);
+    padding: 20px;
+    border-radius: 25px;
+    height: 135px;
+  }
+
+  .menutitle {
+    font-family: 'Times New Roman';
+    font-size: 20px;
+    color: rgb(49, 13, 191);
+    text-align: center;
+    font-weight: 500;
+    margin-bottom: 30px;
+  }
+
+  .stylepanel {
+    border-color: rgb(206, 206, 206);
+    box-shadow: 0 8px 14px -6px rgb(74, 74, 74);
+    padding: 15px;
+    border-radius: 25px;
+    margin-top: 31px;
+  }
+
+  .panel-primary>.panel-heading {
+    height: 50px;
+    background-color:rgb(47, 79, 79);
+    border-bottom-color: rgb(242, 242, 242);
+    text-align: center;
+    padding: 10px;
+    border-radius: 10px;
+  }
+
+  .panel-title {
+    font-family: 'Times New Roman';
+    font-size: 20px;
+    font-weight: 500;
+    color: white;
+    line-height: 1.7;
+  }
+
+  .panel-body {
+    font-family: 'Times New Roman';
+    font-size: 15px;
+    line-height: 1.5;
+    font-weight: 200;
+    color: rgb(80, 80, 80);
+    padding-bottom: 0px;
+  }
+</style>
+
 <body>
 
   <div class="container">
@@ -20,11 +74,11 @@
     </div>
     <div class="row">
       <div class="col-md-2">
-        <div class="well">
-          <h5>Test Subject ID No.:</h5>
+        <div class="well stylemenu">
+          <h5 class="menutitle">Test Subject ID No.:</h5>
           <select id="selDataset"></select>
         </div>
-        <div class="panel panel-primary">
+        <div class="panel panel-primary stylepanel">
           <div class="panel-heading">
             <h3 class="panel-title">Demographic Info</h3>
           </div>
@@ -39,7 +93,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-md-7">
         <div id="bubble"></div>
       </div>
     </div>
