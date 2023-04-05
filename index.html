@@ -11,7 +11,7 @@
 
 
 <style>
-  /* Menu and Demographics */
+  /* DropDown Selector */
   .stylemenu {
     box-shadow: 0 8px 14px -6px rgb(74, 74, 74);
     padding: 20px;
@@ -19,7 +19,7 @@
     height: 135px;
   }
 
-  .menutitle {
+  .title-subjectID {
     font-family: 'Times New Roman';
     font-size: 20px;
     color: rgb(60, 90, 100);
@@ -28,7 +28,8 @@
     margin-bottom: 30px;
   }
 
-  .stylepanel {
+  /*Demographic Info */
+  .panel-demographic {
     border-color: rgb(206, 206, 206);
     box-shadow: 0 8px 14px -6px rgb(74, 74, 74);
     padding: 15px;
@@ -36,7 +37,7 @@
     margin-top: 31px;
   }
 
-  .panel-primary>.panel-heading {
+  .panel-primary>.header-demographic {
     height: 50px;
     background-color:rgb(60, 90, 100);
     border-bottom-color: rgb(242, 242, 242);
@@ -53,14 +54,19 @@
     line-height: 1.7;
   }
 
-  /* .panel-body {
-    font-family: 'Times New Roman';
-    font-size: 15px;
-    line-height: 1.5;
-    font-weight: 200;
-    color: rgb(80, 80, 80);
-    padding-bottom: 0px;
-  } */
+/* ChartBackground */
+.graphs {
+  box-shadow: 0 8px 14px -6px rgb(74, 74, 74);
+    padding: 20px;
+    padding-bottom: 25px;
+    border-radius: 25px;
+  }
+
+  .dashboardrow2 {
+    margin-top: 10px;
+    margin-bottom: 150px;
+  }
+
 </style>
 
 <body>
@@ -88,32 +94,32 @@
         </ol><br></p></p>
     </div>
     <div class="row">
-      <!--Demographic Panel and Menu -->
+      <!--Demographic Panel and DropDowns -->
       <div class="col-md-2">
         <div class="well stylemenu">
-          <h5 class="menutitle">Test Subject ID No.:</h5>
+          <h5 class="title-subjectID">Test Subject ID No.:</h5>
           <select id="selDataset"></select>
         </div>
-        <div class="panel panel-primary stylepanel">
-          <div class="panel-heading">
+        <div class="panel panel-primary panel-demographic">
+          <div class="header-demographic">
             <h3 class="panel-title">Demographic Info</h3>
           </div>
           <div id="sample-metadata" class="panel-body"></div>
         </div>
       </div>
       <!--Bar Chart-->
-      <div class="col-md-5">
-        <div id="bar"></div>
+      <div class="col-md-5 dashboardrow2">
+        <div id="bar" class="graphs"></div>
       </div>
       <!--Gauge dial -->
-      <div class="col-md-5">
+      <div class="col-md-5 dashboardrow2">
         <div id="gauge"></div>
       </div>
     </div>
     <div class="row">
       <!--bubblechart-->
       <div class="col-md-7">
-        <div id="bubble"></div>
+        <div id="bubble" class="graphs"></div>
       </div>
     </div>
   </div>
