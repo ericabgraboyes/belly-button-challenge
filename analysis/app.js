@@ -165,7 +165,7 @@ function populateCharts() {
         y: (sortChartData.map(sCD => 'OTU '+ sCD.id)).slice(0,10).reverse(),
         text: (sortChartData.map(sCD => sCD.label)).slice(0,10).reverse(),
         hoverlabel: {font: {size:12}},
-        // marker: {color:  ['#ECEFF1', '#CFD8DC', '#B0BEC5', '#90A4AE', '#78909C', '#607D8B','#546E7A','#455A64','#37474F', '#263238'],},
+        marker: {color:  ['#ECEFF1', '#CFD8DC', '#B0BEC5', '#90A4AE', '#78909C', '#607D8B','#546E7A','#455A64','#37474F', '#263238'],},
         type: "bar",
         orientation: 'h'}];    
 
