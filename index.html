@@ -66,15 +66,23 @@
 <body>
 
   <div class="container">
+    <!--header for dashboard-->
     <div class="row">
       <div class="col-md-12 jumbotron text-center">
-        <h1>Belly Button Biodiversity Dashboard</h1>
-        <p>Use the interactive charts below to explore the dataset.  Use the drop down selection to select a test subject ID.<br>
-        <br> The demographic panel displays the demographic information for the test subject you selected.<br>
-      <br> There are three different graphics for each subject<br></p>
+        <h1>Belly Button Biodiversity <br> Dashboard</h1>
       </div>
     </div>
+    <hr>
+    <!--Dashboard Overview -->
+    <div class = "row">
+      <h2 class = "DashboardTitle"> Dashboard</h2>
+      <hr>
+      <p class="DashboardOverview"><p>Use the interactive charts below to explore the dataset.  Use the drop down selection to select a test subject ID.<br>
+        <br> The demographic panel displays the demographic information for the test subject you selected.<br>
+      <br> There are three different graphics for each subject<br></p></p>
+    </div>
     <div class="row">
+      <!--Demographic Panel and Menu -->
       <div class="col-md-2">
         <div class="well stylemenu">
           <h5 class="menutitle">Test Subject ID No.:</h5>
@@ -87,14 +95,17 @@
           <div id="sample-metadata" class="panel-body"></div>
         </div>
       </div>
+      <!--Bar Chart-->
       <div class="col-md-5">
         <div id="bar"></div>
       </div>
+      <!--Gauge dial -->
       <div class="col-md-5">
         <div id="gauge"></div>
       </div>
     </div>
     <div class="row">
+      <!--bubblechart-->
       <div class="col-md-7">
         <div id="bubble"></div>
       </div>
