@@ -18,6 +18,8 @@ This assignment asked to build an interactive dashboard using javascript and plo
 <ol>
   <li> Create a drop down (single selection) for individuals to select a test subject ID
   <li> Display the sample metadata, i.e., an individual's demographic information. Display each key-value pair associated with the selected test subject <br>
+  <img src= "https://github.com/ericabgraboyes/belly-button-challenge/blob/main/Images/DemographicPanel.jpg" alt ="Demographic Panel">
+   
   <li> Create a horizontal bar chart with the top 10 OTUs found in that individual
     <ul> <li> Use sample_values as the values for the bar chart.
          <li> Use otu_ids as the labels for the bar chart.
