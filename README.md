@@ -1,8 +1,7 @@
 # belly-button-challenge
-
-https://ericabgraboyes.github.io/belly-button-challenge/
-
 ##### Source Code: The code in this repo uses the base starter code provided. The remaining part of the code reflects individual contributions
+
+Belly-Button Dashboard App Link: https://ericabgraboyes.github.io/belly-button-challenge/
 
 ## Project Background
 This assignment asked to build an interactive dashboard using javascript and plotly to explore a dataset which catalogs microbes that live in human belly buttons.  <br>
@@ -33,3 +32,10 @@ This assignment asked to build an interactive dashboard using javascript and plo
     <ul> <li> Modify the gauge code from Plotly, to account for values ranging from 0-9
          <li> Update the chart whenever a new sample is selected </ul>
   </ol>
+
+### Use javascript and d3 to capture user selection changes: <br>
+<ul>
+  <li> The dashboard should be configured such that users can select which test subject they wish to view results for
+  <li> Use d3 to create an event handler to update all visuals whenever a new test subject ID is selected from the dropdown
+  <li> The dashboard should initialize with the first test subject ID # (940)
+  </ul>
