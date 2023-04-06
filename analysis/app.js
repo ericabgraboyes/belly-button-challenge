@@ -77,9 +77,21 @@ function populateGauge(filterMetaData) {
                 { range: [8, 9], color: '#37474F'}],
             },
 
-        }]
+        }];
+    
+    // declare layout for gauge dial
+    var gaugeLayout = {
+        autosize: true,
+        title: {
+            text: "Belly Button Washing Frequency, Scrubs per Week",
+            font: {
+                family: 'Times New Roman',
+                size: 18,
+                color: 'dark gray',
+                },
+            },};
     // render gauge dial to html tag with id 'gauge'
-    Plotly.newPlot('gauge', gaugeChart)};
+    Plotly.newPlot('gauge', gaugeChart, gaugeLayout)};
 
 function populateCharts() {
     // assign filteredSamples to testSubjectID
@@ -97,15 +109,18 @@ function populateCharts() {
     console.log("outValues:", otuValues);
 
     // create object for each sample id, value and lable, push to array
-    // needed to ensure lables and otuID are assigned to proper values when sorted. clear array between users
-
-    // dataToChart = [];
+    // needed to ensure lables and otuID are assigned to proper values when sorted.
     for (var d=0; d<otuIDs.length; d++) {
         dataToChart.push({
             id:otuIDs[d],
             label:otuLabels[d],
             value:otuValues[d]})};
     console.log("testchart:", dataToChart);
+
+    // call sort method on chart data, assign to global variable
+    sortChartData = dataToChart.sort((d1, d2) => {
+        return d2.otuValues - d1.otuValues;});
+        // console.log("sortedData:", sortChartData);
 
     // declare trace for bubblechart
     var bubble = [{
@@ -116,29 +131,29 @@ function populateCharts() {
         marker: {
             size: otuValues,
             color: otuIDs,
-            //colorscale: 'Earth',
+            colorscale: 'Portland',
             opacity: 0.8},
         },];
     
     // declare layout for bubblechart    
     var bubbleLayout = {
         title: {
-            text: `Belly Button Diversity for Test Subject Id No. ${testSubject}`,
+            text: `Test Subject Id No. ${testSubject}: Belly Button Bacterial Samples` ,
             font: {
                 family: 'Times New Roman',
                 size: 18,
                 color: 'dark gray',
                 },
         },
-        height: 520,
-        width: 1150,
+        autosize: true,
+        responsive: true,
         xaxis: {
             automargin: true,
             title: {
                 text: 'OTU ID (Bacteria)',
                 font: {
                     family: 'Times New Roman',
-                    size: 12,
+                    size: 14,
                     color: 'dark gray',
                     },
             },
@@ -149,7 +164,7 @@ function populateCharts() {
                 text: 'Sample Value',
                 font: {
                     family: 'Times New Roman',
-                    size: 12,
+                    size: 14,
                     color: 'dark gray',
                     },
             },
@@ -157,25 +172,38 @@ function populateCharts() {
 
     // declare trace for barGraph
     var barGraph = [{
-        x: otuValues.slice(0,10).reverse(),
-        y: otuIDs.slice(0,10).map(otuID => `OTU ${otuID}`).reverse(),
-        text: otuLabels.slice(0,10).reverse(),
-        hoverlabel: {font: {size:12}},
-        marker: {color:  ['#ECEFF1', '#CFD8DC', '#B0BEC5', '#90A4AE', '#78909C', '#607D8B','#546E7A','#455A64','#37474F', '#263238'],},
+        x: (sortChartData.map(sCD => sCD.value)).slice(0,10).reverse(),
+        y: (sortChartData.map(sCD => 'OTU '+ sCD.id)).slice(0,10).reverse(),
+        text: (sortChartData.map(sCD => sCD.label)).slice(0,10).reverse(),
+        marker: {color:  ['#263238','#37474F','#455A64','#546E7A','#607D8B','#78909C','#90A4AE','#B0BEC5','#CFD8DC','#ECEFF1'],},
         type: "bar",
         orientation: 'h'}];    
 
-    // declare layout for barchart
-    // var barLayout = {
-    //     title: {
-    //         text: `Test Subject Id No. ${testSubject}'s' top 10 OTU`,
-
-
-    //     }
-    // }
+    var barLayout = {
+        autosize: true,
+        xaxis: {
+            automargin: true,
+            title: {
+                text: 'OTU Sample Value',
+                font: {
+                    family: 'Times New Roman',
+                    size: 14,
+                    color: 'dark gray',
+                    },
+            },
+        },
+        title: {
+            text: `Top 10 OTU's for Test Subject ID No. ${testSubject}`,
+            font: {
+                family: 'Times New Roman',
+                size: 18,
+                color: 'dark gray',
+                },
+            }
+        ,};
 
         // generate plot, assign graph to html tag with id = bar
-    Plotly.newPlot('bar', barGraph);
+    Plotly.newPlot('bar', barGraph, barLayout);
     Plotly.newPlot('bubble', bubble, bubbleLayout)
 };
 
@@ -205,7 +233,7 @@ function init() {
         populateCharts();    
     });
     
-        // define event listener for drop down selection changes
+        // define event listener for drop down selection changes. clear dataToChart array between users
         selector.on('change', function() {
             testSubject = selector.property("value")
             dataToChart = []
