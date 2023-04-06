@@ -14,3 +14,19 @@ This assignment asked to build an interactive dashboard using javascript and plo
   <li> Use d3 selectors to populate the drop down selector menu. Utilize javascript to test source data has been loaded correctly and validate results using the console log.
   </ul>
  
+### Use Javascript and Plotly to create visualizations for the dashboard:
+#### Requested Visuals -- to display for a specific test subject ID
+<ol>
+  <li> Create a drop down (single selection) for individuals to select a test subject ID
+  <li> Display the sample metadata, i.e., an individual's demographic information. Display each key-value pair associated with the selected test subject <br>
+  <li> Create a horizontal bar chart with the top 10 OTUs found in that individual
+    <ul> <li> Use sample_values as the values for the bar chart.
+         <li> Use otu_ids as the labels for the bar chart.
+         <li> Use otu_labels as the hovertext for the chart. </ul>
+  <li> Create a bubble chart that displays each sample 
+    <ul> <li> Use otu_ids for the x values.
+         <li> Use sample_values for the y values.
+         <li> Use sample_values for the marker size.
+         <li> Use otu_ids for the marker colors.
+         <li> Use otu_labels for the text values. </ul><br>
+  </ol>
