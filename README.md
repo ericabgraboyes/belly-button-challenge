@@ -33,9 +33,10 @@ This assignment asked to build an interactive dashboard using javascript and plo
          <li> Use otu_labels for the text values. </ul>
    <img src="https://github.com/ericabgraboyes/belly-button-challenge/blob/main/Images/BubbleChart.jpg" alt="Bubble Chart">
  
-   <li> Create Gauge chart to plot the weekly washing frequency of an individual 
+   <li> BONUS - Create Gauge chart to plot the weekly washing frequency of an individual 
     <ul> <li> Modify the gauge code from Plotly, to account for values ranging from 0-9
-         <li> Update the chart whenever a new sample is selected </ul>
+         <li> Update the chart whenever a new sample is selected</ul>
+    <img src="https://github.com/ericabgraboyes/belly-button-challenge/blob/main/Images/Gauge.jpg" alt="Bonus: Gauge Chart">
   </ol>
 
 ### Use javascript and d3 to capture user selection changes: <br>
