@@ -1,6 +1,5 @@
 # belly-button-challenge
 ##### Source Code: The code in this repo uses the base starter code provided. The remaining part of the code reflects individual contributions
-
 Belly-Button Dashboard App Link: https://ericabgraboyes.github.io/belly-button-challenge/
 
 ## Project Background
@@ -37,7 +36,8 @@ This assignment asked to build an interactive dashboard using javascript and plo
     <ul> <li> Modify the gauge code from Plotly, to account for values ranging from 0-9
          <li> Update the chart whenever a new sample is selected</ul>
     <img src="https://github.com/ericabgraboyes/belly-button-challenge/blob/main/Images/Gauge.jpg" alt="Bonus: Gauge Chart">
-  </ol>
+  </ol><br>
+** Note - Bonus Gauge Chart: The code for the gauge chart is part of the app.js file **
 
 ### Use javascript and d3 to capture user selection changes: <br>
 <ul>
