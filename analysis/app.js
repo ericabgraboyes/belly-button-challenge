@@ -96,6 +96,17 @@ function populateCharts() {
     otuValues = filteredSamples.sample_values;
     console.log("outValues:", otuValues);
 
+    // create object for each sample id, value and lable, push to array
+    // needed to ensure lables and otuID are assigned to proper values when sorted. clear array between users
+
+    // dataToChart = [];
+    for (var d=0; d<otuIDs.length; d++) {
+        dataToChart.push({
+            id:otuIDs[d],
+            label:otuLabels[d],
+            value:otuValues[d]})};
+    console.log("testchart:", dataToChart);
+
     // declare trace for bubblechart
     var bubble = [{
         x: otuIDs,
@@ -197,6 +208,7 @@ function init() {
         // define event listener for drop down selection changes
         selector.on('change', function() {
             testSubject = selector.property("value")
+            dataToChart = []
             populateMetadataVisuals()
             populateCharts();
 
