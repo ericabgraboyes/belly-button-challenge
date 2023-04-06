@@ -6,7 +6,7 @@ https://ericabgraboyes.github.io/belly-button-challenge/
 
 ## Project Background
 This assignment asked to build an interactive dashboard using javascript and plotly to explore a dataset which catalogs microbes that live in human belly buttons.  <br>
-<br> The project consisted of three main components<b></b>: <ol><li>Use javascript and d3 to load sample data <li> Use plotly to visualize data using bar charts, bubble charts and a gauge chart <li> Use d3 to allow users to select different subjects to analyze and have the graphical items update for each test subject </ol>
+<br> The project consisted of three main components<b></b>: <ol><li>Use javascript and d3 to load sample data <li> Use plotly to visualize data using bar charts, bubble charts and a gauge chart. <ul><li> Note the gauge chart was not required but was optional for an additional challenge</ul> <li> Use d3 to allow users to select different subjects to analyze and have the graphical items update for each test subject </ol>
 ### Use javascript and d3 to load sample data: <br>
 <ul>
   <li> Use the D3 library to read in samples.json from the URL
@@ -28,5 +28,8 @@ This assignment asked to build an interactive dashboard using javascript and plo
          <li> Use sample_values for the y values.
          <li> Use sample_values for the marker size.
          <li> Use otu_ids for the marker colors.
-         <li> Use otu_labels for the text values. </ul><br>
+         <li> Use otu_labels for the text values. </ul>
+   <li> Create Gauge chart to plot the weekly washing frequency of an individual 
+    <ul> <li> Modify the gauge code from Plotly, to account for values ranging from 0-9
+         <li> Update the chart whenever a new sample is selected </ul>
   </ol>
