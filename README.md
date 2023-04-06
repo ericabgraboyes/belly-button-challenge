@@ -21,13 +21,17 @@ This assignment asked to build an interactive dashboard using javascript and plo
   <li> Create a horizontal bar chart with the top 10 OTUs found in that individual
     <ul> <li> Use sample_values as the values for the bar chart.
          <li> Use otu_ids as the labels for the bar chart.
-         <li> Use otu_labels as the hovertext for the chart. </ul>
+         <li> Use otu_labels as the hovertext for the chart. </ul>      
+  <img src="https://github.com/ericabgraboyes/belly-button-challenge/blob/main/Images/HorizontalBarChart.jpg" alt="Horizontal Bar Chart">
+
   <li> Create a bubble chart that displays each sample 
     <ul> <li> Use otu_ids for the x values.
          <li> Use sample_values for the y values.
          <li> Use sample_values for the marker size.
          <li> Use otu_ids for the marker colors.
          <li> Use otu_labels for the text values. </ul>
+   <img src="https://github.com/ericabgraboyes/belly-button-challenge/blob/main/Images/BubbleChart.jpg" alt="Bubble Chart">
+ 
    <li> Create Gauge chart to plot the weekly washing frequency of an individual 
     <ul> <li> Modify the gauge code from Plotly, to account for values ranging from 0-9
          <li> Update the chart whenever a new sample is selected </ul>
