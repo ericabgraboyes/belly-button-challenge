@@ -54,17 +54,13 @@
     line-height: 1.7;
   }
 
-/* ChartBackground */
-.graphs {
-  box-shadow: 0 8px 14px -6px rgb(74, 74, 74);
-    padding: 20px;
-    padding-bottom: 25px;
-    border-radius: 25px;
-  }
-
-  .dashboardrow2 {
-    margin-top: 10px;
-    margin-bottom: 150px;
+/* chart boxes */
+.panel-graphs {
+    border-color: rgb(206, 206, 206);
+    box-shadow: 0 8px 14px -6px rgb(74, 74, 74);
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 20px;
   }
 
 </style>
@@ -107,23 +103,22 @@
           <div id="sample-metadata" class="panel-body"></div>
         </div>
       </div>
-      <!--Bar Chart-->
-      <div class="col-md-5 dashboardrow2">
-        <div id="bar" class="graphs"></div>
+
+
+      
+      <div class="col-md-8">
+        <div id="bar"></div>
       </div>
-      <!--Gauge dial -->
-      <div class="col-md-5 dashboardrow2">
+      <div class="col-md-5">
         <div id="gauge"></div>
       </div>
     </div>
     <div class="row">
-      <!--bubblechart-->
-      <div class="col-md-7">
-        <div id="bubble" class="graphs"></div>
+      <div class="col-md-12">
+        <div id="bubble"></div>
       </div>
     </div>
   </div>
-
   <script src="https://d3js.org/d3.v5.min.js"></script>
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
   <script src="./analysis/app.js"></script>
